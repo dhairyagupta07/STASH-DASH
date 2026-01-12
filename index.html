@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stash-Dash | Budget Survival</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <header>
+            <h1 id="expense-forge-title">Expense Forge</h1>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span>Health (HP)</span>
+                    <div class="hp-bar-bg">
+                        <div id="hp-fill" class="hp-fill"></div>
+                    </div>
+                    <span id="hp-text">100 / 100</span>
+                </div>
+                <div class="stat-item">
+                    <span>Loot: 🪙 <span id="gold-count">0</span></span>
+                    <span>Daily Limit: <span id="limit-display">$50</span></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="shop-container">
+            <button id="buy-potion-btn">
+                🍺 Buy Potion (50 Gold)
+            </button>
+        </div>
+
+        <section class="input-section">
+            <h2>New Expense</h2>
+            <form id="expense-form">
+                <input type="text" id="expense-name" placeholder="Item Name (e.g., Mystic Coffee)" required>
+                <input type="number" id="expense-amount" placeholder="Cost (Gold)" step="0.01" required>
+                
+                <label for="expense-type" style="display:block; margin-bottom: 5px; font-size: 0.8rem;">Expense Type:</label>
+                <select id="expense-type">
+                    <option value="need">Essential (Normal Damage)</option>
+                    <option value="want">Luxury (CRITICAL DAMAGE!)</option>
+                </select>
+                
+                <button type="submit" id="add-btn">Forged in Debt!</button>
+            </form>
+        </section>
+
+        <section class="log-section">
+            <h2>Combat Log</h2>
+            <ul id="expense-list">
+                </ul>
+
+            <div class="actions" style="margin-top: 20px; display: flex; gap: 10px;">
+                <button id="reset-day" class="secondary-btn" style="background: #444; font-size: 0.8rem;">End Day & Rest</button>
+                <button id="clear-data" style="background: transparent; border: 1px solid #666; font-size: 0.8rem;">Wipe Save File</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="game-over-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; flex-direction: column; align-items: center; justify-content: center;">
+        <h1 style="color: #ff4d6d; font-size: 4rem; margin-bottom: 10px;">BANKRUPT</h1>
+        <p style="color: #ccc; font-size: 1.2rem; margin-bottom: 20px;">Your health has reached 0.</p>
+        <button id="restart-game" style="width: 200px;">Try Again</button>
+    </div>
+
+    <div id="limit-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 150; flex-direction: column; align-items: center; justify-content: center;">
+        <h1 style="color: #f1c40f; font-size: 3rem; margin-bottom: 10px; text-align: center;">VAULT LOCKED</h1>
+        <p style="color: #fff; font-size: 1.2rem; margin-bottom: 20px; text-align: center;">
+            You cannot afford this item.<br>It exceeds your daily limit of $50.
+        </p>
+        <button id="close-limit-btn" style="width: 150px; background: #444;">Understood</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
